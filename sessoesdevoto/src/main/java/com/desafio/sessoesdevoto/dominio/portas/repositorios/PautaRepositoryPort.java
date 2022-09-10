@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface PautaRepositoryPort {
     Pauta registrarPauta(Pauta pauta) throws Exception;
 
-    Optional<Pauta> buscarPeloId(Integer idPauta) throws Exception;
+    Optional<Pauta> buscarPeloId(String idPauta) throws Exception;
 
     Pauta alterarPauta(Pauta pauta) throws Exception;
 

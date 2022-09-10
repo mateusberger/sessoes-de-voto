@@ -2,6 +2,8 @@ package com.desafio.sessoesdevoto.dominio.servicos;
 
 import com.desafio.sessoesdevoto.dominio.Pauta;
 import com.desafio.sessoesdevoto.dominio.dto.*;
+import com.desafio.sessoesdevoto.dominio.excecoes.PautaNaoEncotradaException;
+import com.desafio.sessoesdevoto.dominio.excecoes.SessaoJaExistenteException;
 import com.desafio.sessoesdevoto.dominio.portas.interfaces.PautaService;
 import com.desafio.sessoesdevoto.dominio.portas.repositorios.PautaRepositoryPort;
 
@@ -27,12 +29,12 @@ public class PautaServiceImple implements PautaService {
     public SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form) throws Exception {
         Optional<Pauta> pautaOptional = pautaRepo.buscarPeloId(form.idPauta());
 
-        if (pautaOptional.isEmpty()) throw new IllegalArgumentException("Id da pauta informado não foi localizado");
+        if (pautaOptional.isEmpty()) throw new PautaNaoEncotradaException();
 
         Pauta pauta = pautaOptional.get();
 
         if (pauta.getInicioDaSessao() != null || pauta.getTerminoDaSessao() != null)
-            throw new IllegalArgumentException("Pauta já possui uma sessão");
+            throw new SessaoJaExistenteException();
 
         pauta.setInicioDaSessao(form.inicioDaSessao());
         pauta.setTerminoDaSessao(form.terminoDaSessao());
@@ -43,7 +45,7 @@ public class PautaServiceImple implements PautaService {
     }
 
     @Override
-    public Optional<PautaCompletaDTO> buscarPautaPeloId(Integer idPauta) throws Exception {
+    public Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) throws Exception {
         return pautaRepo.buscarPeloId(idPauta).map(PautaCompletaDTO::pautaToPautaCompletaDTO);
     }
 

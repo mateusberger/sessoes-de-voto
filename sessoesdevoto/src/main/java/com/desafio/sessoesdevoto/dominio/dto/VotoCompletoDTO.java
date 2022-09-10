@@ -3,7 +3,7 @@ package com.desafio.sessoesdevoto.dominio.dto;
 import com.desafio.sessoesdevoto.dominio.Voto;
 
 public record VotoCompletoDTO(
-        Integer idDaPauta,
+        String idDaPauta,
         String cpfAssociado,
         boolean voto
 ) {

@@ -5,7 +5,7 @@ import com.desafio.sessoesdevoto.dominio.Pauta;
 import java.time.LocalDateTime;
 
 public record SessaoInciadaDTO(
-        Integer idPauta,
+        String idPauta,
         LocalDateTime inicioDaSessao,
         LocalDateTime terminoDaSessao
 ) {

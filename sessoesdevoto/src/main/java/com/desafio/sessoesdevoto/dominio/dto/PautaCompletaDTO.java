@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record PautaCompletaDTO(
-        Integer idPauta,
+        String idPauta,
         String nome,
         String descricao,
         LocalDateTime inicioDaSessao,

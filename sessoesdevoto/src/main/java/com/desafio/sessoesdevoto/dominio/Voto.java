@@ -6,12 +6,12 @@ public class Voto {
 
     private Boolean voto;
 
-    private Integer idDaPauta;
+    private String idDaPauta;
 
     public Voto() {
     }
 
-    public Voto(String cpfDoAssociado, Boolean voto, Integer idDaPauta) {
+    public Voto(String cpfDoAssociado, Boolean voto, String idDaPauta) {
         this.cpfDoAssociado = cpfDoAssociado;
         this.voto = voto;
         this.idDaPauta = idDaPauta;
@@ -33,11 +33,11 @@ public class Voto {
         this.voto = voto;
     }
 
-    public Integer getIdDaPauta() {
+    public String getIdDaPauta() {
         return idDaPauta;
     }
 
-    public void setIdDaPauta(Integer idDaPauta) {
+    public void setIdDaPauta(String idDaPauta) {
         this.idDaPauta = idDaPauta;
     }
 }

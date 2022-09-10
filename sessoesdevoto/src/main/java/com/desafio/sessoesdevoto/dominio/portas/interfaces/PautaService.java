@@ -11,7 +11,7 @@ public interface PautaService {
 
     SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form) throws Exception;
 
-    Optional<PautaCompletaDTO> buscarPautaPeloId(Integer idPauta) throws Exception;
+    Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) throws Exception;
 
     List<PautaSimplificadaDTO> listarTodas() throws Exception;
 

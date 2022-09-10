@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Pauta {
 
-    private Integer id;
+    private String id;
 
     private String nome;
 
@@ -18,26 +18,25 @@ public class Pauta {
 
     private LocalDateTime terminoDaSessao;
 
-
     private List<Voto> votos;
 
     public Pauta() {
     }
 
-    public Pauta(Integer id, String nome, String descricao, LocalDateTime inicioDaSessao, LocalDateTime terminoDaSessao, Voto... votos) {
+    public Pauta(String id, String nome, String descricao, LocalDateTime inicioDaSessao, LocalDateTime terminoDaSessao, Voto... votos) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.inicioDaSessao = inicioDaSessao;
         this.terminoDaSessao = terminoDaSessao;
-        this.votos = votos == null ? new ArrayList<Voto>() : Arrays.asList(votos);
+        this.votos = votos == null ? new ArrayList<>() : Arrays.asList(votos);
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,15 +4,18 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public record IniciarSessaoForm(
-        Integer idPauta,
+        String idPauta,
         LocalDateTime inicioDaSessao,
         LocalDateTime terminoDaSessao
 ) {
 
     public IniciarSessaoForm {
+
         LocalDateTime agora = LocalDateTime.now();
 
         if (idPauta == null) throw new IllegalArgumentException("Id da pauta não foi informado");
+
+        if (idPauta.isBlank()) throw new IllegalArgumentException("Id da pauta não pode ser vazio");
 
         if (inicioDaSessao == null) inicioDaSessao = agora;
 

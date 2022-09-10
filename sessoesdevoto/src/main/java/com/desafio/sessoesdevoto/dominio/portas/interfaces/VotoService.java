@@ -10,6 +10,6 @@ public interface VotoService {
 
     VotoCompletoDTO registrarVoto(RegistrarVotoForm registrarVotoForm) throws Exception;
 
-    List<VotoSimplificadoDTO> listarVotosDeUmaPauta(Integer idPauta) throws Exception;
+    List<VotoSimplificadoDTO> listarVotosDeUmaPauta(String idPauta) throws Exception;
 
 }

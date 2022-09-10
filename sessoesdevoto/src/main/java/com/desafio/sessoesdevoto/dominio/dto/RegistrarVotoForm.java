@@ -4,15 +4,16 @@ import com.desafio.sessoesdevoto.dominio.Voto;
 
 public record RegistrarVotoForm(
 
-        Integer idPauta,
+        String idPauta,
         String cpfDoAssociado,
         boolean voto
 ) {
     public RegistrarVotoForm {
         if (idPauta == null) throw new IllegalArgumentException("Id da pauta não foi informado");
+        if (idPauta.isBlank()) throw new IllegalArgumentException("Id da pauta não pode ser vazio");
         if (cpfDoAssociado == null) throw new IllegalArgumentException("CPF do Associado não foi informado");
-        if (cpfDoAssociado.isBlank()) throw new IllegalArgumentException("CPF não pode ser vazio");
-        if (!cpfDoAssociado.matches("^\\d+$")) throw new IllegalArgumentException("CPF deve conter apenas números");
+        if (cpfDoAssociado.isBlank()) throw new IllegalArgumentException("CPF do Associado não pode ser vazio");
+        if (!cpfDoAssociado.matches("^\\d+$")) throw new IllegalArgumentException("CPF do Associado deve conter apenas números");
     }
 
     public Voto toVoto() {
