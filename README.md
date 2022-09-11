@@ -70,22 +70,22 @@ Abaixo, segue uma lista das tecnologias:
 
 ## To do list
 
-- :tw-2705: Registrar os votos de associados em pautas com o controle da sessão
+- :white_check_mark: Registrar os votos de associados em pautas com o controle da sessão
 
-- :tw-2705: Persistir os dados
+- :white_check_mark: Persistir os dados
 
-- :tw-2705: Visualizar o resultado da votação
+- :white_check_mark: Visualizar o resultado da votação
 
-- :tw-2705: Documentar o projeto
+- :white_check_mark: Documentar o projeto
 
-- :tw-2705: Documentar a API
+- :white_check_mark: Documentar a API
 
 - Documentar o código
-	- :tw-2705: Camada de domínio
+	- :white_check_mark: Camada de domínio
 	- Camada de aplicação
 	- Camada de infraestrutura
 
-- :tw-2705: Aplicar uma arquitetura que deixe a aplicação desacoplada
+- :white_check_mark: Aplicar uma arquitetura que deixe a aplicação desacoplada
 
 - Gerar Logs da aplicação
 
@@ -99,4 +99,4 @@ Abaixo, segue uma lista das tecnologias:
 
 - Executar testes de performance
 
-- :tw-2705: Possibilitar o versionamento da API
+- :white_check_mark: Possibilitar o versionamento da API
