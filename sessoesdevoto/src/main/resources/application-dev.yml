@@ -1,13 +1,7 @@
 spring:
-  profiles:
-    active: ${PERFIL_DE_CONFIG:dev}
   data:
     mongodb:
       uri: ${MONGO_URL_COMPLETA:mongodb://localhost:27017/desafioDev}
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
 
 management:
   endpoints:
@@ -15,6 +9,6 @@ management:
       exposure:
         include: health,info,beans,env
 
-server:
-  servlet:
-    context-path: /api/v1
+logging:
+  level:
+    root: DEBUG
