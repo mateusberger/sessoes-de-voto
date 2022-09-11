@@ -28,8 +28,6 @@ public class PautaController {
             @RequestBody RegistrarPautaForm registrarPautaForm
     ) {
 
-        PautaSimplificadaDTO pautaSimplificadaDTO = pautaService.registrarPauta(registrarPautaForm);
-
         return pautaService.registrarPauta(registrarPautaForm);
     }
 
