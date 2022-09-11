@@ -16,9 +16,9 @@ Serão necessárias algumas dependências para rodar o projeto.
 Com esse repositório clonado, em sua ultima versão, siga os passos abaixo.
 
 #### Compilar a aplicação
-Dentro do diretório `/sessoesdevoto`
+Dentro do diretório `/sessoesdevoto` existe um arquivo `mvnw`
 
-Execute o comando `./mvnw clean package`
+Execute o comando `./mvnw clean package` dentro desse diretorio
 
 Aguarde, esse processo pode demorar alguns minutos.
 
