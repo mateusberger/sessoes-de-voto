@@ -3,6 +3,7 @@ package com.desafio.sessoesdevoto.dominio.dto;
 import com.desafio.sessoesdevoto.dominio.Pauta;
 import com.desafio.sessoesdevoto.dominio.Voto;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ public record PautaCompletaDTO(
         Integer totalDeVotosNao,
         List<VotoSimplificadoDTO> votos
 ) {
+
+    public static Clock clock = Clock.systemDefaultZone();
+
     public static PautaCompletaDTO pautaToPautaCompletaDTO(Pauta pauta) {
 
         int totalVotosSim = 0;
@@ -39,7 +43,7 @@ public record PautaCompletaDTO(
                 pauta.getDescricao(),
                 pauta.getInicioDaSessao(),
                 pauta.getTerminoDaSessao(),
-                LocalDateTime.now().isAfter(pauta.getTerminoDaSessao()),
+                LocalDateTime.now(clock).isAfter(pauta.getTerminoDaSessao()),
                 (totalVotosNao + totalVotosSim),
                 totalVotosSim,
                 totalVotosNao,

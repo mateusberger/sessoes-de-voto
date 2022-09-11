@@ -1,5 +1,6 @@
 package com.desafio.sessoesdevoto.dominio.dto;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -16,9 +17,11 @@ public record IniciarSessaoForm(
         LocalDateTime terminoDaSessao
 ) {
 
+    public static Clock clock = Clock.systemDefaultZone();
+
     public IniciarSessaoForm {
 
-        LocalDateTime agora = LocalDateTime.now();
+        LocalDateTime agora = LocalDateTime.now(clock);
 
         if (idPauta == null) throw new IllegalArgumentException("Id da pauta não foi informado");
 

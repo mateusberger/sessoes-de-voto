@@ -12,6 +12,7 @@ import com.desafio.sessoesdevoto.dominio.portas.interfaces.VotoService;
 import com.desafio.sessoesdevoto.dominio.portas.repositorios.PautaRepositoryPort;
 import com.desafio.sessoesdevoto.dominio.portas.repositorios.VotoRepositoryPort;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +23,18 @@ public class VotoServiceImple implements VotoService {
 
     private final PautaRepositoryPort pautaRepo;
 
+    private final Clock clock;
+
     public VotoServiceImple(VotoRepositoryPort votoRepo, PautaRepositoryPort pautaRepo) {
         this.votoRepo = votoRepo;
         this.pautaRepo = pautaRepo;
+        this.clock = Clock.systemDefaultZone();
+    }
+
+    public VotoServiceImple(VotoRepositoryPort votoRepo, PautaRepositoryPort pautaRepo, Clock clock) {
+        this.votoRepo = votoRepo;
+        this.pautaRepo = pautaRepo;
+        this.clock = clock;
     }
 
     @Override
@@ -40,7 +50,7 @@ public class VotoServiceImple implements VotoService {
 
         Pauta pauta = pautaOptional.get();
 
-        LocalDateTime agora = LocalDateTime.now();
+        LocalDateTime agora = LocalDateTime.now(clock);
 
         if (pauta.getInicioDaSessao().isAfter(agora)) throw new SessaoNaoIniciadaException();
 
