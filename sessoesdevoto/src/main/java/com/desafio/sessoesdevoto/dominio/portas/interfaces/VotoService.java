@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface VotoService {
 
-    VotoCompletoDTO registrarVoto(RegistrarVotoForm registrarVotoForm) throws Exception;
+    VotoCompletoDTO registrarVoto(RegistrarVotoForm registrarVotoForm);
 
-    List<VotoSimplificadoDTO> listarVotosDeUmaPauta(String idPauta) throws Exception;
+    List<VotoSimplificadoDTO> listarVotosDeUmaPauta(String idPauta);
 
 }

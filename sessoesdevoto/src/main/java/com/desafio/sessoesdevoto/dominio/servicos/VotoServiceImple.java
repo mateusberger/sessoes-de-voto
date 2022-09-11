@@ -28,7 +28,7 @@ public class VotoServiceImple implements VotoService {
     }
 
     @Override
-    public VotoCompletoDTO registrarVoto(RegistrarVotoForm form) throws Exception {
+    public VotoCompletoDTO registrarVoto(RegistrarVotoForm form) {
 
         boolean existeVoto = votoRepo.existeVoto(form.cpfDoAssociado(), form.idPauta());
 
@@ -50,7 +50,7 @@ public class VotoServiceImple implements VotoService {
     }
 
     @Override
-    public List<VotoSimplificadoDTO> listarVotosDeUmaPauta(String idPauta) throws Exception {
+    public List<VotoSimplificadoDTO> listarVotosDeUmaPauta(String idPauta) {
         return votoRepo.listarPeloIdDaPauta(idPauta)
                 .stream()
                 .map(VotoSimplificadoDTO::votoToVotoSimplificadoDTO)

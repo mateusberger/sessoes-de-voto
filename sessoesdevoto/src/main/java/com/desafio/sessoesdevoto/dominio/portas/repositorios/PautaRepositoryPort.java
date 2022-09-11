@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PautaRepositoryPort {
-    Pauta registrarPauta(Pauta pauta) throws Exception;
+    Pauta registrarPauta(Pauta pauta);
 
-    Optional<Pauta> buscarPeloId(String idPauta) throws Exception;
+    Optional<Pauta> buscarPeloId(String idPauta);
 
-    Pauta alterarPauta(Pauta pauta) throws Exception;
+    Pauta alterarPauta(Pauta pauta);
 
-    List<Pauta> listarTodas() throws Exception;
+    List<Pauta> listarTodas();
 }

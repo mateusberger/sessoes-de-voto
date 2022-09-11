@@ -7,12 +7,12 @@ import java.util.Optional;
 
 public interface PautaService {
 
-    PautaSimplificadaDTO registrarPauta(RegistrarPautaForm form) throws Exception;
+    PautaSimplificadaDTO registrarPauta(RegistrarPautaForm form);
 
-    SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form) throws Exception;
+    SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form);
 
-    Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) throws Exception;
+    Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta);
 
-    List<PautaSimplificadaDTO> listarTodas() throws Exception;
+    List<PautaSimplificadaDTO> listarTodas();
 
 }

@@ -20,13 +20,13 @@ public class PautaServiceImple implements PautaService {
 
 
     @Override
-    public PautaSimplificadaDTO registrarPauta(RegistrarPautaForm form) throws Exception {
+    public PautaSimplificadaDTO registrarPauta(RegistrarPautaForm form) {
         Pauta pauta = pautaRepo.registrarPauta(form.toPauta());
         return PautaSimplificadaDTO.pautaToPautaSimplificadaDTO(pauta);
     }
 
     @Override
-    public SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form) throws Exception {
+    public SessaoInciadaDTO registrarSessaoDeVoto(IniciarSessaoForm form) {
         Optional<Pauta> pautaOptional = pautaRepo.buscarPeloId(form.idPauta());
 
         if (pautaOptional.isEmpty()) throw new PautaNaoEncotradaException();
@@ -45,12 +45,12 @@ public class PautaServiceImple implements PautaService {
     }
 
     @Override
-    public Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) throws Exception {
+    public Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) {
         return pautaRepo.buscarPeloId(idPauta).map(PautaCompletaDTO::pautaToPautaCompletaDTO);
     }
 
     @Override
-    public List<PautaSimplificadaDTO> listarTodas() throws Exception {
+    public List<PautaSimplificadaDTO> listarTodas() {
         return pautaRepo.listarTodas()
                 .stream()
                 .map(PautaSimplificadaDTO::pautaToPautaSimplificadaDTO)
