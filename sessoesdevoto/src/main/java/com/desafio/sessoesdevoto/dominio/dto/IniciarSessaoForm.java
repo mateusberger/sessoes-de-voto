@@ -3,6 +3,13 @@ package com.desafio.sessoesdevoto.dominio.dto;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Formulário com dados de início e termino de uma sessão de votação em uma pauta
+ *
+ * @param idPauta ID da pauta (Obrigatório)
+ * @param inicioDaSessao Momento que é iniciada a Sessão (Se nulo, será utilizado a momento atual)
+ * @param terminoDaSessao Momento que é finalizada a Sessão (Se nulo, será utilizado a momento atual + 1 minuto)
+ */
 public record IniciarSessaoForm(
         String idPauta,
         LocalDateTime inicioDaSessao,
