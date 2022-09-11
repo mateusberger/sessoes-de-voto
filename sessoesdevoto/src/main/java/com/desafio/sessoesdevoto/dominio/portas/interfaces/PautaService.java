@@ -1,6 +1,8 @@
 package com.desafio.sessoesdevoto.dominio.portas.interfaces;
 
 import com.desafio.sessoesdevoto.dominio.dto.*;
+import com.desafio.sessoesdevoto.dominio.form.IniciarSessaoForm;
+import com.desafio.sessoesdevoto.dominio.form.RegistrarPautaForm;
 
 import java.util.List;
 import java.util.Optional;

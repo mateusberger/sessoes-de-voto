@@ -2,7 +2,7 @@ package com.desafio.sessoesdevoto.dominio.servicos;
 
 import com.desafio.sessoesdevoto.dominio.Pauta;
 import com.desafio.sessoesdevoto.dominio.dto.VotoCompletoDTO;
-import com.desafio.sessoesdevoto.dominio.dto.RegistrarVotoForm;
+import com.desafio.sessoesdevoto.dominio.form.RegistrarVotoForm;
 import com.desafio.sessoesdevoto.dominio.dto.VotoSimplificadoDTO;
 import com.desafio.sessoesdevoto.dominio.excecoes.PautaNaoEncotradaException;
 import com.desafio.sessoesdevoto.dominio.excecoes.SessaoEncerradaException;

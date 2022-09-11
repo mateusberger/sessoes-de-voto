@@ -1,4 +1,4 @@
-package com.desafio.sessoesdevoto.dominio.dto;
+package com.desafio.sessoesdevoto.dominio.form;
 
 import java.time.Clock;
 import java.time.LocalDateTime;

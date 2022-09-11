@@ -1,4 +1,4 @@
-package com.desafio.sessoesdevoto.dominio.dto;
+package com.desafio.sessoesdevoto.dominio.form;
 
 import com.desafio.sessoesdevoto.dominio.Voto;
 

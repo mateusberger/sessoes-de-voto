@@ -4,6 +4,13 @@ import com.desafio.sessoesdevoto.dominio.Pauta;
 
 import java.time.LocalDateTime;
 
+/**
+ * Retorno com dados da sessão que foi iniciada
+ *
+ * @param idPauta
+ * @param inicioDaSessao
+ * @param terminoDaSessao
+ */
 public record SessaoInciadaDTO(
         String idPauta,
         LocalDateTime inicioDaSessao,

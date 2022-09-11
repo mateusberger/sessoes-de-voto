@@ -4,6 +4,8 @@ import com.desafio.sessoesdevoto.dominio.Pauta;
 import com.desafio.sessoesdevoto.dominio.dto.*;
 import com.desafio.sessoesdevoto.dominio.excecoes.PautaNaoEncotradaException;
 import com.desafio.sessoesdevoto.dominio.excecoes.SessaoJaExistenteException;
+import com.desafio.sessoesdevoto.dominio.form.IniciarSessaoForm;
+import com.desafio.sessoesdevoto.dominio.form.RegistrarPautaForm;
 import com.desafio.sessoesdevoto.dominio.portas.interfaces.PautaService;
 import com.desafio.sessoesdevoto.dominio.portas.repositorios.PautaRepositoryPort;
 
@@ -17,7 +19,6 @@ public class PautaServiceImple implements PautaService {
     public PautaServiceImple(PautaRepositoryPort pautaRepo) {
         this.pautaRepo = pautaRepo;
     }
-
 
     @Override
     public PautaSimplificadaDTO registrarPauta(RegistrarPautaForm form) {

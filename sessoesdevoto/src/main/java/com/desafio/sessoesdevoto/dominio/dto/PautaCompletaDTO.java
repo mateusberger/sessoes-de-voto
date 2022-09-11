@@ -8,6 +8,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Retorno com todas as informações de uma pauta
+ *
+ * @param idPauta
+ * @param nome
+ * @param descricao
+ * @param inicioDaSessao
+ * @param terminoDaSessao
+ * @param votacaoFinalizada
+ * @param totalDeVotos
+ * @param totalDeVotosSim
+ * @param totalDeVotosNao
+ * @param votos
+ */
 public record PautaCompletaDTO(
         String idPauta,
         String nome,
