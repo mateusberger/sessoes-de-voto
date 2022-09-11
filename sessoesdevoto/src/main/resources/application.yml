@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URL_COMPLETA:mongodb://localhost:27017/desafio}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,env
+
+server:
+  servlet:
+    context-path: /api/v1
