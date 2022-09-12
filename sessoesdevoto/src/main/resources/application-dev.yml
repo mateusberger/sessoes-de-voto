@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URL_COMPLETA:mongodb://localhost:27017/desafioDev}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,env
+
+logging:
+  level:
+    root: DEBUG

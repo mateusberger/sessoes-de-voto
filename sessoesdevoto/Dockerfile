@@ -1,0 +1,12 @@
+FROM openjdk:17
+
+WORKDIR /apivotacao
+
+ENV MONGO_URL_COMPLETA="" \
+    PERFIL_DE_CONFIG=""
+
+EXPOSE 8080
+
+COPY /target/apivotacao.jar .
+
+CMD java -DPERFIL_DE_CONFIG=$PERFIL_DE_CONFIG -DMONGO_URL_COMPLETA=$MONGO_URL_COMPLETA -jar apivotacao.jar
