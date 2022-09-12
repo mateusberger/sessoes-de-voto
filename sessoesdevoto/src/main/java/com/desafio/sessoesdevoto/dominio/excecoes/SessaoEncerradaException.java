@@ -4,6 +4,6 @@ public class SessaoEncerradaException extends RuntimeException {
 
     public SessaoEncerradaException() {
 
-        super("A sessão de votação já chegou ao fim");
+        super("A sessão de votação já terminou");
     }
 }
