@@ -82,16 +82,19 @@ Abaixo, segue uma lista das tecnologias:
 
 - Documentar o código
 	- :white_check_mark: Camada de domínio
-	- Camada de aplicação
+	- :white_check_mark: Camada de aplicação
 	- Camada de infraestrutura
 
 - :white_check_mark: Aplicar uma arquitetura que deixe a aplicação desacoplada
 
-- Gerar Logs da aplicação
+- :white_check_mark: Gerar Logs da aplicação
 
 - Criar testes automatizados
+	- :white_check_mark: Possuir algum teste
+	- Possuir as principais funcionalidades testada
+	- Possuir grande cobertura de testes em todas as camadas
 
-- Permitir e facilitar o deploy da aplicação
+- :white_check_mark: Permitir e facilitar o deploy da aplicação
 
 - Integração com sistemas externos (verificar se o associado pode votar)
 
