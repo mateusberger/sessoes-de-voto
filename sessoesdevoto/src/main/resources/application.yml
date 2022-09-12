@@ -1,9 +1,9 @@
 spring:
   profiles:
-    active: ${PERFIL_DE_CONFIG:dev}
+    active: ${PERFIL_DE_CONFIG:prod}
   data:
     mongodb:
-      uri: ${MONGO_URL_COMPLETA:mongodb://localhost:27017/desafioDev}
+      uri: ${MONGO_URL_COMPLETA:mongodb://localhost:27017/desafio}
 
 springdoc:
   swagger-ui:
@@ -18,3 +18,7 @@ management:
 server:
   servlet:
     context-path: /api/v1
+
+dominio:
+  permissordevoto:
+    url: https://user-info.herokuapp.com/

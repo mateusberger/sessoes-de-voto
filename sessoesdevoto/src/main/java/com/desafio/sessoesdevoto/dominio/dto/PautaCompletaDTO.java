@@ -53,18 +53,22 @@ public record PautaCompletaDTO(
             votosSimplificadoDTOS.add(VotoSimplificadoDTO.votoToVotoSimplificadoDTO(voto));
         }
 
+        LocalDateTime agora = LocalDateTime.now(clock);
+
+        boolean votacaoIniciada = pauta.getInicioDaSessao() != null
+                && agora.isAfter(pauta.getInicioDaSessao());
+
+        boolean votacaoFinalizada = pauta.getTerminoDaSessao() != null
+                && agora.isAfter(pauta.getTerminoDaSessao());
+
         return new PautaCompletaDTO(
                 pauta.getId(),
                 pauta.getNome(),
                 pauta.getDescricao(),
                 pauta.getInicioDaSessao(),
                 pauta.getTerminoDaSessao(),
-                pauta.getInicioDaSessao() == null
-                        ? false
-                        : LocalDateTime.now(clock).isBefore(pauta.getInicioDaSessao()),
-                pauta.getTerminoDaSessao() == null
-                        ? false
-                        : LocalDateTime.now(clock).isAfter(pauta.getTerminoDaSessao()),
+                votacaoIniciada,
+                votacaoFinalizada,
                 (totalVotosNao + totalVotosSim),
                 totalVotosSim,
                 totalVotosNao,
