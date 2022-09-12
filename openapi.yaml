@@ -1,0 +1,298 @@
+openapi: 3.0.1
+info:
+  title: API de Votação para Associados
+  description: API para registro de Pautas, abertura de sessões de votação e registro de votos
+  version: v1
+externalDocs:
+  description: Documentação do projeto no GitHub
+  url: https://github.com/mateusberger/sessoes-de-voto
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Execução local
+  - url: http://gamecms.com.br:8080/api/v1
+    description: Hospedado
+tags:
+  - name: Pauta
+    description: Controladora para gerir a criação de pautas e iniciar sessões de votação
+  - name: Voto
+    description: Controladora para registro de votos
+paths:
+  /voto:
+    post:
+      tags:
+        - Voto
+      summary: Registrar um voto
+      description: |-
+        Registra um voto utilizando o CPF do associado e o ID da pauta.
+
+        O atributo voto contem a resposta do voto (true = SIM, false = NÃO).
+      operationId: registrarVoto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrarVotoForm'
+        required: true
+      responses:
+        '201':
+          description: Voto registrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotoCompletoDTO'
+        '400':
+          description: Atributos ou valores incorretos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '403':
+          description: Sessão de votação encerrada ou ainda não iniciada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '409':
+          description: Voto já computado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '500':
+          description: Erro interno no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+  /pauta:
+    get:
+      tags:
+        - Pauta
+      summary: Listar pautas
+      description: Lista todas as pautas registradas.
+      operationId: listarPautas
+      responses:
+        '200':
+          description: Lista com todas as pautas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PautaSimplificadaDTO'
+        '500':
+          description: Erro interno no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+    post:
+      tags:
+        - Pauta
+      summary: Registra uma Pauta
+      description: Registra uma pauta para a votação utilizando um nome e descrição.
+      operationId: registrarPauta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrarPautaForm'
+        required: true
+      responses:
+        '201':
+          description: Pauta registrada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PautaSimplificadaDTO'
+        '400':
+          description: Atributos ou valores incorretos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '500':
+          description: Erro interno no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+  /pauta/abrirVotacao:
+    post:
+      tags:
+        - Pauta
+      summary: Abrir/agendar uma Sessão de votação
+      description: |-
+        Abre ou agenda uma sessão de votação de uma pauta.
+
+        Para abrir a sessão no momento atual, não informe o campo 'inicioDaSessao'.
+
+        Caso o campo 'terminoDaSessao' não seja informado, a sessão ira durar 1 minuto.
+      operationId: iniciarSessao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IniciarSessaoForm'
+        required: true
+      responses:
+        '200':
+          description: Sessão registrada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessaoInciadaDTO'
+        '400':
+          description: Atributos ou valores incorretos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '409':
+          description: Pauta já possuí uma sessão
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+        '500':
+          description: Erro interno no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+  /pauta/{idPauta}:
+    get:
+      tags:
+        - Pauta
+      summary: Visualizar pauta
+      description: Retorna todas as informações de uma Pauta se o ID informado existir.
+      operationId: visualizarPauta
+      parameters:
+        - name: idPauta
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sessão registrada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PautaCompletaDTO'
+        '500':
+          description: Erro interno no servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemPadraoDeErro'
+components:
+  schemas:
+    VotoCompletoDTO:
+      type: object
+      properties:
+        idDaPauta:
+          type: string
+        cpfAssociado:
+          type: string
+        voto:
+          type: boolean
+    MensagemPadraoDeErro:
+      type: object
+      properties:
+        mensagem:
+          type: string
+        status:
+          type: integer
+          format: int32
+        statusMessage:
+          type: string
+        timeStamp:
+          type: integer
+          format: int64
+    RegistrarVotoForm:
+      type: object
+      properties:
+        idPauta:
+          type: string
+        cpfDoAssociado:
+          type: string
+        voto:
+          type: boolean
+    PautaSimplificadaDTO:
+      type: object
+      properties:
+        idPauta:
+          type: string
+        nome:
+          type: string
+        descricao:
+          type: string
+    RegistrarPautaForm:
+      type: object
+      properties:
+        nome:
+          type: string
+        descricao:
+          type: string
+    SessaoInciadaDTO:
+      type: object
+      properties:
+        idPauta:
+          type: string
+        inicioDaSessao:
+          type: string
+          format: date-time
+        terminoDaSessao:
+          type: string
+          format: date-time
+    IniciarSessaoForm:
+      type: object
+      properties:
+        idPauta:
+          type: string
+        inicioDaSessao:
+          type: string
+          format: date-time
+        terminoDaSessao:
+          type: string
+          format: date-time
+    PautaCompletaDTO:
+      type: object
+      properties:
+        idPauta:
+          type: string
+        nome:
+          type: string
+        descricao:
+          type: string
+        inicioDaSessao:
+          type: string
+          format: date-time
+        terminoDaSessao:
+          type: string
+          format: date-time
+        votacaoInicializada:
+          type: boolean
+        votacaoFinalizada:
+          type: boolean
+        totalDeVotos:
+          type: integer
+          format: int32
+        totalDeVotosSim:
+          type: integer
+          format: int32
+        totalDeVotosNao:
+          type: integer
+          format: int32
+        votos:
+          type: array
+          items:
+            $ref: '#/components/schemas/VotoSimplificadoDTO'
+    VotoSimplificadoDTO:
+      type: object
+      properties:
+        cpfDoAssociado:
+          type: string
+        voto:
+          type: boolean
