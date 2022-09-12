@@ -59,12 +59,10 @@ public record PautaCompletaDTO(
                 pauta.getDescricao(),
                 pauta.getInicioDaSessao(),
                 pauta.getTerminoDaSessao(),
-                pauta.getInicioDaSessao() == null
-                        ? false
-                        : LocalDateTime.now(clock).isBefore(pauta.getInicioDaSessao()),
-                pauta.getTerminoDaSessao() == null
-                        ? false
-                        : LocalDateTime.now(clock).isAfter(pauta.getTerminoDaSessao()),
+                pauta.getInicioDaSessao() != null && LocalDateTime.now(clock)
+                        .isBefore(pauta.getInicioDaSessao()),
+                pauta.getTerminoDaSessao() != null && LocalDateTime.now(clock)
+                        .isBefore(pauta.getTerminoDaSessao()),
                 (totalVotosNao + totalVotosSim),
                 totalVotosSim,
                 totalVotosNao,
