@@ -28,6 +28,8 @@ public record PautaCompletaDTO(
         String descricao,
         LocalDateTime inicioDaSessao,
         LocalDateTime terminoDaSessao,
+
+        Boolean votacaoInicializada,
         Boolean votacaoFinalizada,
         Integer totalDeVotos,
         Integer totalDeVotosSim,
@@ -57,7 +59,12 @@ public record PautaCompletaDTO(
                 pauta.getDescricao(),
                 pauta.getInicioDaSessao(),
                 pauta.getTerminoDaSessao(),
-                LocalDateTime.now(clock).isAfter(pauta.getTerminoDaSessao()),
+                pauta.getInicioDaSessao() == null
+                        ? false
+                        : LocalDateTime.now(clock).isBefore(pauta.getInicioDaSessao()),
+                pauta.getTerminoDaSessao() == null
+                        ? false
+                        : LocalDateTime.now(clock).isAfter(pauta.getTerminoDaSessao()),
                 (totalVotosNao + totalVotosSim),
                 totalVotosSim,
                 totalVotosNao,

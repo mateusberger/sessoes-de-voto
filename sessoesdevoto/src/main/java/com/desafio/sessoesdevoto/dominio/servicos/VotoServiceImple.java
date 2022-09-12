@@ -52,9 +52,13 @@ public class VotoServiceImple implements VotoService {
 
         LocalDateTime agora = LocalDateTime.now(clock);
 
-        if (pauta.getInicioDaSessao().isAfter(agora)) throw new SessaoNaoIniciadaException();
+        if (pauta.getInicioDaSessao() == null || pauta.getInicioDaSessao().isAfter(agora)){
+            throw new SessaoNaoIniciadaException();
+        }
 
-        if (pauta.getTerminoDaSessao().isBefore(agora)) throw new SessaoEncerradaException();
+        if (pauta.getTerminoDaSessao() == null || pauta.getTerminoDaSessao().isBefore(agora)){
+            throw new SessaoEncerradaException();
+        }
 
         return VotoCompletoDTO.votoToVotoCompletoDTO(votoRepo.registrarVoto(form.toVoto()));
     }

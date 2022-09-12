@@ -86,4 +86,16 @@ public class TratamentoDeExcecoes {
 
         return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<MensagemDeErroPadrao> tratarException(
+            Exception e,
+            HttpServletRequest request
+    ) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        logger.error("Tratando erro inesperado, retornando " + status.name(), e, request);
+
+        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+    }
 }
