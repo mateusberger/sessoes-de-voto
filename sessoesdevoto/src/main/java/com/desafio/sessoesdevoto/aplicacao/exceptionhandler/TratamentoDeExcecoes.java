@@ -16,7 +16,7 @@ public class TratamentoDeExcecoes {
     private static final Logger logger = LoggerFactory.getLogger(TratamentoDeExcecoes.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarIllegalArgumentException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarIllegalArgumentException(
             IllegalArgumentException e,
             HttpServletRequest request
     ) {
@@ -24,11 +24,11 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de argumento inválido, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(PautaNaoEncotradaException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarPautaNaoEncotradaException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarPautaNaoEncotradaException(
             PautaNaoEncotradaException e,
             HttpServletRequest request
     ) {
@@ -36,11 +36,11 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de pauta não encontrada, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(SessaoEncerradaException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarSessaoEncerradaException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarSessaoEncerradaException(
             SessaoEncerradaException e,
             HttpServletRequest request
     ) {
@@ -48,11 +48,11 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de sessão de votação já encerrada, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(SessaoJaExistenteException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarSessaoJaExistenteException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarSessaoJaExistenteException(
             SessaoJaExistenteException e,
             HttpServletRequest request
     ) {
@@ -60,11 +60,11 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de sessão já iniciada, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(SessaoNaoIniciadaException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarSessaoNaoIniciadaException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarSessaoNaoIniciadaException(
             SessaoNaoIniciadaException e,
             HttpServletRequest request
     ) {
@@ -72,11 +72,11 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de argumento inválido, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(VotoJaExistenteException.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarVotoJaExistenteException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarVotoJaExistenteException(
             VotoJaExistenteException e,
             HttpServletRequest request
     ) {
@@ -84,11 +84,35 @@ public class TratamentoDeExcecoes {
 
         logger.warn("Tratando erro de voto já existente, retornando " + status.name());
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
+    }
+
+    @ExceptionHandler(VotoNaoPermitidoException.class)
+    public ResponseEntity<MensagemPadraoDeErro> tratarVotoNaoPermitidoException(
+            VotoNaoPermitidoException e,
+            HttpServletRequest request
+    ) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+
+        logger.error("Tratando erro de associado sem permissão para voto, retornando " + status.name());
+
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
+    }
+
+    @ExceptionHandler(FalhaAoValidarPermissaoDeVotoException.class)
+    public ResponseEntity<MensagemPadraoDeErro> tratarFalhaAoValidarPermissaoDeVotoException(
+            FalhaAoValidarPermissaoDeVotoException e,
+            HttpServletRequest request
+    ) {
+        HttpStatus status = HttpStatus.BAD_GATEWAY;
+
+        logger.error("Tratando erro inesperado ao tentar validar voto, retornando " + status.name(), e, request);
+
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<MensagemDeErroPadrao> tratarException(
+    public ResponseEntity<MensagemPadraoDeErro> tratarException(
             Exception e,
             HttpServletRequest request
     ) {
@@ -96,6 +120,6 @@ public class TratamentoDeExcecoes {
 
         logger.error("Tratando erro inesperado, retornando " + status.name(), e, request);
 
-        return ResponseEntity.status(status).body(MensagemDeErroPadrao.criar(e, status));
+        return ResponseEntity.status(status).body(MensagemPadraoDeErro.criar(e, status));
     }
 }

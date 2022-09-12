@@ -1,6 +1,6 @@
 package com.desafio.sessoesdevoto.aplicacao;
 
-import com.desafio.sessoesdevoto.aplicacao.exceptionhandler.MensagemDeErroPadrao;
+import com.desafio.sessoesdevoto.aplicacao.exceptionhandler.MensagemPadraoDeErro;
 import com.desafio.sessoesdevoto.dominio.dto.PautaCompletaDTO;
 import com.desafio.sessoesdevoto.dominio.dto.PautaSimplificadaDTO;
 import com.desafio.sessoesdevoto.dominio.dto.SessaoInciadaDTO;
@@ -57,7 +57,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     )
@@ -92,7 +92,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -102,7 +102,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     )
@@ -141,7 +141,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -151,7 +151,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -161,7 +161,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     )
@@ -197,7 +197,7 @@ public class PautaController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     )

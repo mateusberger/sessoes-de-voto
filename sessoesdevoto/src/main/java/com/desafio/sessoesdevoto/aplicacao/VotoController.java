@@ -1,6 +1,6 @@
 package com.desafio.sessoesdevoto.aplicacao;
 
-import com.desafio.sessoesdevoto.aplicacao.exceptionhandler.MensagemDeErroPadrao;
+import com.desafio.sessoesdevoto.aplicacao.exceptionhandler.MensagemPadraoDeErro;
 import com.desafio.sessoesdevoto.dominio.dto.VotoCompletoDTO;
 import com.desafio.sessoesdevoto.dominio.form.RegistrarVotoForm;
 import com.desafio.sessoesdevoto.dominio.portas.interfaces.VotoService;
@@ -49,7 +49,7 @@ public class VotoController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -59,7 +59,7 @@ public class VotoController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -69,7 +69,7 @@ public class VotoController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     ),
@@ -79,7 +79,7 @@ public class VotoController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MensagemDeErroPadrao.class)
+                                            schema = @Schema(implementation = MensagemPadraoDeErro.class)
                                     )
                             }
                     )

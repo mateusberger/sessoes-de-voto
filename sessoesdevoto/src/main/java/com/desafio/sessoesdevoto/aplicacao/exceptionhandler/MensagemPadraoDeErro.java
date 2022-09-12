@@ -10,15 +10,15 @@ import org.springframework.http.HttpStatus;
  * @param statusMessage
  * @param timeStamp
  */
-public record MensagemDeErroPadrao(
+public record MensagemPadraoDeErro(
         String mensagem,
         Integer status,
         String statusMessage,
         Long timeStamp
 ) {
 
-    public static MensagemDeErroPadrao criar(Throwable ex, HttpStatus status){
-        return new MensagemDeErroPadrao(
+    public static MensagemPadraoDeErro criar(Throwable ex, HttpStatus status){
+        return new MensagemPadraoDeErro(
                 ex.getMessage(),
                 status.value(),
                 status.name(),
