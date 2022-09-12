@@ -96,7 +96,7 @@ Abaixo, segue uma lista das tecnologias:
 
 - :white_check_mark: Permitir e facilitar o deploy da aplicação
 
-- Integração com sistemas externos (verificar se o associado pode votar)
+- :white_check_mark: Integração com sistemas externos (verificar se o associado pode votar)
 
 - Emissão de evento em mensageria e filas (ao término de uma sessão de votação)
 
