@@ -133,4 +133,22 @@ public class PautaServiceImpleTest {
         assertEquals(form.terminoDaSessao(), LocalDateTime.now(fixedClock).plus(1, ChronoUnit.MINUTES));
     }
 
+    @Test
+    @DisplayName("Deveria iniciar sessão")
+    void deveriaIniciarSessao(){
+
+        Clock fixedClock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
+
+        IniciarSessaoForm.clock = fixedClock;
+
+        IniciarSessaoForm form = new IniciarSessaoForm(
+                "idDaPauta",
+                LocalDateTime.now(fixedClock),
+                LocalDateTime.now(fixedClock).plusHours(1)
+        );
+
+        assertEquals(form.inicioDaSessao(), LocalDateTime.now(fixedClock));
+        assertEquals(form.terminoDaSessao(), LocalDateTime.now(fixedClock).plus(1, ChronoUnit.HOURS));
+    }
+
 }

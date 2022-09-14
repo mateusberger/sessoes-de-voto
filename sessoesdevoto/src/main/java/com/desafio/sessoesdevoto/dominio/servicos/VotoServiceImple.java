@@ -57,7 +57,7 @@ public class VotoServiceImple implements VotoService {
             throw new SessaoNaoIniciadaException();
         }
 
-        if (pauta.getInicioDaSessao().isBefore(agora)) {
+        if (pauta.getInicioDaSessao().isAfter(agora)) {
             throw new SessaoNaoIniciadaException();
         }
 

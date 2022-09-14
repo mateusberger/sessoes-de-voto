@@ -4,6 +4,6 @@ public class SessaoNaoIniciadaException extends RuntimeException {
 
     public SessaoNaoIniciadaException() {
 
-        super("A sessão de votação não foi iniciada");
+        super("A sessão de votação não foi iniciada.");
     }
 }

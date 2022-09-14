@@ -4,6 +4,6 @@ public class VotoNaoPermitidoException extends RuntimeException {
 
     public VotoNaoPermitidoException() {
 
-        super("Voto foi recusado");
+        super("Voto foi recusado.");
     }
 }
