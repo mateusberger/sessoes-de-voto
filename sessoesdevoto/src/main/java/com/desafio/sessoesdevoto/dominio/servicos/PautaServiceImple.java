@@ -47,7 +47,7 @@ public class PautaServiceImple implements PautaService {
 
     @Override
     public Optional<PautaCompletaDTO> buscarPautaPeloId(String idPauta) {
-        return pautaRepo.buscarPeloId(idPauta).map(PautaCompletaDTO::pautaToPautaCompletaDTO);
+        return pautaRepo.buscarPeloId(idPauta).map(PautaCompletaDTO::fromPauta);
     }
 
     @Override

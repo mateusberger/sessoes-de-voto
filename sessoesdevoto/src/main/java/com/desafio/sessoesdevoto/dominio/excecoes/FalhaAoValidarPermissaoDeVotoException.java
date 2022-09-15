@@ -4,6 +4,6 @@ public class FalhaAoValidarPermissaoDeVotoException extends RuntimeException {
 
     public FalhaAoValidarPermissaoDeVotoException() {
 
-        super("Falha ao validar permissão do voto");
+        super("Falha ao validar permissão do voto.");
     }
 }

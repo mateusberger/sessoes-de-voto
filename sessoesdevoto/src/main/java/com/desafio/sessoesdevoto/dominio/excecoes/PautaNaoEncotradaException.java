@@ -4,6 +4,6 @@ public class PautaNaoEncotradaException extends RuntimeException {
 
     public PautaNaoEncotradaException() {
 
-        super("Não foram encontrados registros dessa pauta");
+        super("Não foram encontrados registros dessa pauta.");
     }
 }
