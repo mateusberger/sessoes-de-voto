@@ -12,7 +12,6 @@ public record RegistrarPautaForm(
         String nome,
         String descricao
 ) {
-
     public RegistrarPautaForm {
         if (nome == null) throw new IllegalArgumentException("Nome da pauta não pode ser nulo");
         if (nome.isBlank()) throw new IllegalArgumentException("Nome da pauta não pode ser vazio");

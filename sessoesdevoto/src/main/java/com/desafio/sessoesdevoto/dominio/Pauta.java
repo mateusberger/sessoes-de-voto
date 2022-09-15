@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Classe que representa uma pauta de votação, responsável por gerir uma sessão de votação e contem os votos
+ */
 public class Pauta {
 
     private String id;
@@ -31,6 +34,31 @@ public class Pauta {
         this.terminoDaSessao = terminoDaSessao;
         this.votos = votos == null ? new ArrayList<>() : Arrays.asList(votos);
     }
+
+    public boolean isSessaoAgendada(){
+        return getInicioDaSessao() != null;
+    }
+
+    public boolean isSessaoIniciada(){
+        return getInicioDaSessao() != null && LocalDateTime.now().isAfter(getInicioDaSessao());
+    }
+
+    public boolean isSessaoTerminada(){
+        return getTerminoDaSessao() != null && LocalDateTime.now().isAfter(getTerminoDaSessao());
+    }
+
+    public long getTotalDeVotos(){
+        return votos == null ? 0 : votos.size();
+    }
+
+    public long getTotalDeVotosSim(){
+        return votos == null ? 0 : votos.stream().filter(Voto::getVoto).count();
+    }
+
+    public long getTotalDeVotosNao(){
+        return  votos == null ? 0 : votos.stream().filter(v ->!v.getVoto()).count();
+    }
+
 
     public String getId() {
         return id;

@@ -1,11 +1,8 @@
 package com.desafio.sessoesdevoto.dominio.dto;
 
 import com.desafio.sessoesdevoto.dominio.Pauta;
-import com.desafio.sessoesdevoto.dominio.Voto;
 
-import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,38 +25,15 @@ public record PautaCompletaDTO(
         String descricao,
         LocalDateTime inicioDaSessao,
         LocalDateTime terminoDaSessao,
-
         Boolean votacaoInicializada,
         Boolean votacaoFinalizada,
-        Integer totalDeVotos,
-        Integer totalDeVotosSim,
-        Integer totalDeVotosNao,
+        Long totalDeVotos,
+        Long totalDeVotosSim,
+        Long totalDeVotosNao,
         List<VotoSimplificadoDTO> votos
 ) {
 
-    public static Clock clock = Clock.systemDefaultZone();
-
-    public static PautaCompletaDTO pautaToPautaCompletaDTO(Pauta pauta) {
-
-        int totalVotosSim = 0;
-        int totalVotosNao = 0;
-
-        List<VotoSimplificadoDTO> votosSimplificadoDTOS = new ArrayList<>();
-
-        for (Voto voto : pauta.getVotos()) {
-            if (voto.getVoto()) totalVotosSim++;
-            else totalVotosNao++;
-
-            votosSimplificadoDTOS.add(VotoSimplificadoDTO.votoToVotoSimplificadoDTO(voto));
-        }
-
-        LocalDateTime agora = LocalDateTime.now(clock);
-
-        boolean votacaoIniciada = pauta.getInicioDaSessao() != null
-                && agora.isAfter(pauta.getInicioDaSessao());
-
-        boolean votacaoFinalizada = pauta.getTerminoDaSessao() != null
-                && agora.isAfter(pauta.getTerminoDaSessao());
+    public static PautaCompletaDTO fromPauta(Pauta pauta) {
 
         return new PautaCompletaDTO(
                 pauta.getId(),
@@ -67,12 +41,15 @@ public record PautaCompletaDTO(
                 pauta.getDescricao(),
                 pauta.getInicioDaSessao(),
                 pauta.getTerminoDaSessao(),
-                votacaoIniciada,
-                votacaoFinalizada,
-                (totalVotosNao + totalVotosSim),
-                totalVotosSim,
-                totalVotosNao,
-                votosSimplificadoDTOS
+                pauta.isSessaoIniciada(),
+                pauta.isSessaoTerminada(),
+                pauta.getTotalDeVotos(),
+                pauta.getTotalDeVotosSim(),
+                pauta.getTotalDeVotosNao(),
+                pauta.getVotos()
+                        .stream()
+                        .map(VotoSimplificadoDTO::votoToVotoSimplificadoDTO)
+                        .toList()
         );
     }
 }

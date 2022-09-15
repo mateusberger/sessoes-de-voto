@@ -5,81 +5,44 @@ import com.desafio.sessoesdevoto.dominio.Voto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PautaCompletaDTOTest {
 
-    private Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
+
 
     @Test
-    @DisplayName("Deveria aparecer que votação iniciada e votação não finalizada")
-    void deveriaAparecerVotacaoEmCurso(){
+    @DisplayName("Deveria aparecer um conjunto igual de VotoSimplificadoDTO")
+    void deveriaAparecerUmConjuntoIgualDeVotoSimplificadosDTO(){
 
         Pauta pauta = new Pauta(
-                "idMockado",
+                "IdMockado",
                 "nomeMockado",
                 "descricaoMockado",
-                LocalDateTime.now(clock).minusHours(1),
-                LocalDateTime.now(clock).plusHours(1),
-                new Voto("52431", true, "idMockado"),
-                new Voto("74566", true, "idMockado")
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                new Voto("97474338009", false, "idMockado"),
+                new Voto("71824248008", true, "idMockado"),
+                new Voto("68829007013", false, "idMockado")
         );
 
-        PautaCompletaDTO.clock = clock;
+        PautaCompletaDTO dto = PautaCompletaDTO.fromPauta(pauta);
 
-        PautaCompletaDTO pautaCompletaDTO = PautaCompletaDTO.pautaToPautaCompletaDTO(pauta);
+        assertEquals(3, dto.votos().size(), "Lista deveria estar com um tamanho igual");
 
-        assertTrue(pautaCompletaDTO.votacaoInicializada());
-        assertFalse(pautaCompletaDTO.votacaoFinalizada());
-    }
+        assertTrue(dto.votos().stream()
+                .anyMatch(v -> Objects.equals(v.cpfDoAssociado(), "97474338009") && !v.voto()));
 
-    @Test
-    @DisplayName("Deveria aparecer votacao iniciada e votacao finalizada")
-    void deveriaAparecerVotacaoIniciadaEVotacaoFinalizada(){
+        assertTrue(dto.votos().stream()
+                .anyMatch(v -> Objects.equals(v.cpfDoAssociado(), "71824248008") && v.voto()));
 
-        Pauta pauta = new Pauta(
-                "idMockado",
-                "nomeMockado",
-                "descricaoMockado",
-                LocalDateTime.now(clock).minusHours(2),
-                LocalDateTime.now(clock).minusHours(1),
-                new Voto("52431", true, "idMockado"),
-                new Voto("74566", true, "idMockado")
-        );
+        assertTrue(dto.votos().stream()
+                .anyMatch(v -> Objects.equals(v.cpfDoAssociado(), "68829007013") && !v.voto()));
 
-        PautaCompletaDTO.clock = clock;
 
-        PautaCompletaDTO pautaCompletaDTO = PautaCompletaDTO.pautaToPautaCompletaDTO(pauta);
-
-        assertTrue(pautaCompletaDTO.votacaoInicializada());
-        assertTrue(pautaCompletaDTO.votacaoFinalizada());
-    }
-
-    @Test
-    @DisplayName("Deveria aparecer não votacao iniciada e votacao não finalizada")
-    void deveriaAparecerVotacaoNaoIniciadaEVotacaoNaoFinalizada(){
-
-        Pauta pauta = new Pauta(
-                "idMockado",
-                "nomeMockado",
-                "descricaoMockado",
-                LocalDateTime.now(clock).plusHours(1),
-                LocalDateTime.now(clock).plusHours(2),
-                new Voto("52431", true, "idMockado"),
-                new Voto("74566", true, "idMockado")
-        );
-
-        PautaCompletaDTO.clock = clock;
-
-        PautaCompletaDTO pautaCompletaDTO = PautaCompletaDTO.pautaToPautaCompletaDTO(pauta);
-
-        assertFalse(pautaCompletaDTO.votacaoInicializada());
-        assertFalse(pautaCompletaDTO.votacaoFinalizada());
     }
 
 }

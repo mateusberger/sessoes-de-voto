@@ -10,7 +10,6 @@ import com.desafio.sessoesdevoto.dominio.Voto;
  * @param voto Voto do Associoado (true: Sim, false: Não)
  */
 public record RegistrarVotoForm(
-
         String idPauta,
         String cpfDoAssociado,
         boolean voto

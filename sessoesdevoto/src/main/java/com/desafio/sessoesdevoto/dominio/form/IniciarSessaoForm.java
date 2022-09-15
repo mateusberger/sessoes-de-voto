@@ -16,7 +16,6 @@ public record IniciarSessaoForm(
         LocalDateTime inicioDaSessao,
         LocalDateTime terminoDaSessao
 ) {
-
     public static Clock clock = Clock.systemDefaultZone();
 
     public IniciarSessaoForm {
